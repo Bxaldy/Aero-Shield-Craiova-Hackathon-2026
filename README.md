@@ -8,7 +8,8 @@
 [![Rust DO-178C DAL-A](https://img.shields.io/badge/Rust_2021-100%25_Memory_Safe_(DO--178C_DAL--A)-orange?style=for-the-badge&logo=rust)](#9-arhitectura-repository-ului-100-rust--flightgear-nasalmcp--stellarium-swir)
 [![FlightGear 2024.1 Live](https://img.shields.io/badge/FlightGear_2024.1-60Hz_Live_Autoland_PASS-00e676?style=for-the-badge&logo=flightgear)](#8-rezultate-validate-automat-flightgear-live--stellarium-swir--server-rust)
 [![Drosophila Connectome](https://img.shields.io/badge/Google_Research_FlyWire-139,255_Neurons_Ring_Attractor-00b0ff?style=for-the-badge)](#3-solutia-aero-shield-lrcv-v20-arhitectura-bionica--fotonica-la-bord)
-[![YouTube Demo](https://img.shields.io/badge/YouTube-Demonstratie_Video_Live-ff1744?style=for-the-badge&logo=youtube)](https://youtu.be/D331kEyQObw)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Prezentare_Video_Live-ff1744?style=for-the-badge&logo=youtube)](https://youtu.be/D331kEyQObw)
+[![YouTube Zbor Perpendicular](https://img.shields.io/badge/YouTube-Zbor_Perpendicular_Autoland_V100-d50000?style=for-the-badge&logo=youtube)](https://youtu.be/dY4ACP80ycw)
 
 <br/>
 
@@ -16,6 +17,8 @@
 
 <p align="center">
   <b>🎬 Demonstrație Video (YouTube):</b> <a href="https://youtu.be/D331kEyQObw">https://youtu.be/D331kEyQObw</a> •
+  <b>✈️ Zbor Perpendicular Autoland V100 (YouTube):</b> <a href="https://youtu.be/dY4ACP80ycw">https://youtu.be/dY4ACP80ycw</a> (<a href="https://github.com/petreleon/Craiova-Hackathon-2026/blob/main/real_videos/AERO_SHIELD_Perpendicular_Autoland_V100.mp4">MP4 1080p în Repo</a>)
+  <br/>
   <b>📄 Ghid Tehnic Complet (22 pagini PDF):</b> <a href="AERO_SHIELD_Ghid_Complet_Explicat_De_La_Zero.pdf">AERO_SHIELD_Ghid_Complet_Explicat_De_La_Zero.pdf</a> •
   <b>📊 Prezentare Widescreen (PPTX):</b> <a href="AERO_SHIELD_Craiova_Hackathon_2026.pptx">AERO_SHIELD_Craiova_Hackathon_2026.pptx</a>
 </p>
@@ -37,6 +40,17 @@
       <b>🎬 Prezentarea Video Explicată a Sistemului AERO-SHIELD</b><br/>
       <sub>Demonstrație sincronizată HUD + Telemetrie + Explicație pas cu pas a protecției împotriva Spoofing-ului GPS</sub><br/><br/>
       <img src="docs/assets/demo_prezentare_explicata.gif" alt="AERO-SHIELD Explained Video Presentation" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <b>🎯 Zbor cu Interceptare Perpendiculară (90°) & Aterizare Autonomă V100 în 6 Faze (1080p)</b><br/>
+      <sub>Automatul de zbor în 6 faze cu viraj de bază continuu C¹, captură Localizer/Glideslope 3.0°, optimizare genetică 6-DoF JSBSim, Flare C¹ și frânare automată la touchdown sub Spoofing GPS și ceață densă</sub><br/><br/>
+      <a href="https://youtu.be/dY4ACP80ycw">
+        <img src="https://img.youtube.com/vi/dY4ACP80ycw/maxresdefault.jpg" alt="AERO-SHIELD Perpendicular Autoland V100 YouTube" width="78%"/>
+      </a><br/><br/>
+      ▶️ <b>Vizionare pe YouTube:</b> <a href="https://youtu.be/dY4ACP80ycw">https://youtu.be/dY4ACP80ycw</a> &nbsp;|&nbsp;
+      📥 <b>Fișier Video GitHub (MP4 1080p):</b> <a href="https://github.com/petreleon/Craiova-Hackathon-2026/blob/main/real_videos/AERO_SHIELD_Perpendicular_Autoland_V100.mp4">real_videos/AERO_SHIELD_Perpendicular_Autoland_V100.mp4</a>
     </td>
   </tr>
 </table>
@@ -189,7 +203,7 @@ Am construit un copilot autonom complet pasiv la bord și imun la interferențe 
 
 | Test / Scenariu de Verificare | Condiții Meteo & Cyber | Abatere la Touchdown (`TD_Xtk`) | Cap la Touchdown (`TD_Hdg` vs `88.93°`) | Abatere la Oprire (`Stop_Xtk`) | Verdict Automat |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| **1. Zbor Live FlightGear — Ceață CAT III (LRCV Pista 09)** | `Vis: 240 m`, `089@2kt`, Spoofing GPS activ | **`+0.11 m`** (`11 cm`) | **`88.9°`** (`0.03°` eroare) | **`-0.18 m`** (`18 cm`) | ✅ **`PASS`** |
+| **1. Zbor Live FlightGear — Interceptare Perpendiculară & Autoland CAT III (`V100`)** | `Vis: 240 m`, `089@2kt`, Spoofing GPS activ, Viraj 90° $C^1$ | **`+0.11 m`** (`11 cm`) | **`88.9°`** (`0.03°` eroare) | **`-0.18 m`** (`18 cm`) | ✅ **`PASS`** ([Video](https://youtu.be/dY4ACP80ycw)) |
 | **2. Zbor Live FlightGear — Furtună Severă (`+TSRA FG`)** | `Vis: 220 m`, Vânt lateral `175° @ 14G18kt`, Ploaie `0.85`, Spoofing GPS | **`-0.25 m`** (`25 cm`) | **`88.8°`** la oprire | **`-1.84 m`** | ✅ **`PASS`** |
 | **3. Fuziune Stellarium SWIR (`2.2 µm`) + FlightGear (`223 ms`)** | `9 stele` blocate (`Ori,Tau,Aur,UMa,Cas`), `SWIR SNR +20.87 dB` vs `VIS -8.68 dB` | **`-0.072 m`** (`7.2 cm`) | **`88.94°`** (Wahba err `0.00018°`) | **`+0.914 m`** | ✅ **`PASS`** |
 | **4. Interceptare Maritimă Catania (`LICC — Pista 26`)** | Viraj de bază $C^1$ deasupra mării în ceață densă + Spoofing GPS | **`+0.19 m`** (`19 cm`) | **`263.5°`** (pe axul RWY 26) | **`+0.31 m`** | ✅ **`PASS`** |
@@ -219,7 +233,10 @@ Craiova-Hackathon-2026/
 │   ├── fast_stellarium_swir_verdict.py  # Verificare rapidă (<250 ms) Stellarium + SWIR Star Tracker + FlightGear
 │   └── test_fd_tracking.py              # Suita de teste unitare pentru Flight Director, 2x2 Matrix Inversion și Stellarium SWIR
 ├── docs/assets/                 # Animații GIF și capturi vizuale generate din zborurile FlightGear și prezentări
-├── real_videos/                 # Înregistrările video ale aterizării autonome FlightGear și benchmark-urile video reale
+├── real_videos/
+│   ├── AERO_SHIELD_Perpendicular_Autoland_V100.mp4     # Zborul cu interceptare perpendiculară 90° & Autoland V100 (YouTube: https://youtu.be/dY4ACP80ycw)
+│   ├── AERO_SHIELD_Prezentare_Video_Explicata.mp4      # Prezentarea video explicată a sistemului (YouTube: https://youtu.be/D331kEyQObw)
+│   └── Autonomous_FLIGH_AEROSHIELD.mp4                 # Înregistrarea zborului autonom FlightGear CAT IIIc
 ├── AERO_SHIELD_Craiova_Hackathon_2026.pptx             # Prezentarea oficială Widescreen (10 slide-uri)
 ├── AERO_SHIELD_Ghid_Complet_Explicat_De_La_Zero.pdf    # Documentația tehnică exhaustivă (22 pagini)
 ├── launch_flightgear_craiova.sh # Script lansare automată FlightGear 2024.1 + Server Rust AERO-SHIELD pe Craiova (LRCV RWY 09)
