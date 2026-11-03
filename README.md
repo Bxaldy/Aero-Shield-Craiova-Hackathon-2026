@@ -1,13 +1,13 @@
 <div align="center">
 
 # 🛡️✈️ AERO-SHIELD LRCV V2.0
-### **Sistem Bionic & Fotonic de Navigație Optică 6-DoF, Aterizare Autonomă CAT IIIc (Zero-GPS) și Protecție Anti-Spoofing GNSS / ILS în Ceață Densă și Furtună**
-#### *Aeroportul Internațional Craiova (`LRCV` — Pista 09: `44.3179° N, 23.8729° E`, Cap Adevărat `88.9314°`) & Catania (`LICC` — Pista 26)*
+### **Prototip de Cercetare TRL-4 (Software-in-the-Loop) pentru Navigație Bionică & Fotonică 6-DoF, Aterizare Autonomă Simulată (Zero-GPS / Scenarii CAT III) și Detecție Anti-Spoofing GNSS / ILS**
+#### *Integrare Rust + C++ JSBSim + FlightGear 2024.1 + Stellarium 24.3 • Aeroportul Internațional Craiova (`LRCV` — Pista 09: `44.3179° N, 23.8729° E`, Cap `88.9314°`) & Catania (`LICC` — Pista 26)*
 
 [![Premiu Originalitate](https://img.shields.io/badge/Craiova_Hackathon_2026-Premiul_pentru_Originalitate-ffd700?style=for-the-badge&logo=trophy)](#1-demonstratie-live-zbor-autonom-flightgear--prezentare-video-explicata)
-[![Rust DO-178C DAL-A](https://img.shields.io/badge/Rust_2021-100%25_Memory_Safe_(DO--178C_DAL--A)-orange?style=for-the-badge&logo=rust)](#9-arhitectura-repository-ului-100-rust--flightgear-nasalmcp--stellarium-swir)
-[![FlightGear 2024.1 Live](https://img.shields.io/badge/FlightGear_2024.1-60Hz_Live_Autoland_PASS-00e676?style=for-the-badge&logo=flightgear)](#8-rezultate-validate-automat-flightgear-live--stellarium-swir--server-rust)
-[![Drosophila Connectome](https://img.shields.io/badge/Google_Research_FlyWire-139,255_Neurons_Ring_Attractor-00b0ff?style=for-the-badge)](#3-solutia-aero-shield-lrcv-v20-arhitectura-bionica--fotonica-la-bord)
+[![Rust Safe Avionics](https://img.shields.io/badge/Rust_2021-%23!%5Bforbid(unsafe__code)%5D_%E2%80%A2_Simplex_RTA-orange?style=for-the-badge&logo=rust)](#9-arhitectura-repository-ului-100-rust--flightgear-nasalmcp--stellarium-swir)
+[![FlightGear 2024.1 SIL](https://img.shields.io/badge/FlightGear_2024.1_%26_JSBSim-60Hz_SIL_Autoland_PASS-00e676?style=for-the-badge&logo=flightgear)](#8-rezultate-validate-automat--clasificarea-dovezilor-evidence-classification)
+[![Drosophila Connectome](https://img.shields.io/badge/FlyWire_Connectome-Reduced--Order_CX_Ring_Attractor-00b0ff?style=for-the-badge)](#3-solutia-aero-shield-lrcv-v20-arhitectura-bionica--fotonica-la-bord)
 [![YouTube Demo](https://img.shields.io/badge/YouTube-Prezentare_Video_Live-ff1744?style=for-the-badge&logo=youtube)](https://youtu.be/HiSAS6L2h-Q)
 [![YouTube Zbor Perpendicular](https://img.shields.io/badge/YouTube-Zbor_Perpendicular_Autoland_V100-d50000?style=for-the-badge&logo=youtube)](https://youtu.be/G3kw4HmEDUI)
 [![License Proprietary](https://img.shields.io/badge/Licenta-Proprietary_(All_Rights_Reserved)-8e24aa?style=for-the-badge)](LICENSE)
@@ -26,6 +26,17 @@
 </p>
 
 </div>
+
+> [!IMPORTANT]
+> **Research Prototype Scope & Evidence Classification (`TRL-4 Software-in-the-Loop`):**
+> *AERO-SHIELD LRCV V2.0 is an advanced TRL-4 Software-in-the-Loop (SIL) research prototype developed for Craiova Hackathon 2026 (Winner — Originality Award). It demonstrates bio-inspired, multi-sensor GNSS-denied navigation and simulated autonomous landing using independent Rust (`SO(3)`) and C++ `JSBSim` dynamic implementations, `FlightGear 2024.1` live telemetry integration, and `Stellarium 24.3` astronomical references. Reported navigation and landing accuracy figures are simulation-derived (`Emergent 6-DoF SIL`) or analytical error-budget results (`Analytical Envelope`), as explicitly classified in [Section 8](#8-rezultate-validate-automat--clasificarea-dovezilor-evidence-classification). The system is written in Rust using deterministic, defensive coding practices (`#![forbid(unsafe_code)]`, zero `.unwrap()` on the 60 Hz critical path, Simplex Runtime Assurance per ASTM F3269-21 concepts) and has not yet undergone physical sensor integration, hardware-in-the-loop (HIL) testing, flight trials, or formal DO-178C / EASA CAT III certification.*
+>
+> **🛠️ Ce este implementat și verificabil direct în acest repository (*What We Actually Built*):**
+> - **Workspace Rust cu 5 crate-uri (`103` teste unitare Rust + `12` teste Python = `115/115 PASS`)**: `#![forbid(unsafe_code)]`, tipuri fantomă (*Zero-Cost Phantom Types*) pentru sistemele de coordonate (`BodyFrame`, `NedFrameLrcv`, `CameraFrameSwir`), zero alocări dinamice în bucla de `60 Hz`.
+> - **Filtru Kalman pe Starea de Eroare cu 22 de Stări (`EsEkf22State`)**: actualizare de covarianță în **formă stabilizată Joseph** cu regularizare Cholesky/SVD, propagare de atitudine pe varietatea $\text{SO}(3)$, estimarea online a biasurilor IMU ($\delta\mathbf{b}_a, \delta\mathbf{b}_g$), a vântului 3D și a desincronizării temporale senzor-IMU (`IDX_DT_SYNC`).
+> - **Arhitectură Simplex Runtime Assurance (RTA)**: controlul primar de zbor este 100% analitic (inversiune matriceală $2\times 2$ $\mathbf{M}_{\text{lat}}^{-1}$ extrasă din `c172p.xml` și legi de ghidaj Hermite $C^1$ în 6 faze), în timp ce corecția neurală (`FrozenFogNavModel`) este izolată prin `.detach()`, plafonată fără memorie la $\le 7,0\text{ cm}$ în bucla RT și auto-decuplată ($\delta_k \to 0$) în `Flat Whiteout` prin covarianță heteroscedastică.
+> - **Watchdog Anti-Spoofing GNSS Dual-Layer**: poartă statistică instantanee $\chi^2_6$ Mahalanobis (`16.67 ms`) cuplată cu detector secvențial vectorial Page-Hinkley **CUSUM** pe inovații albite ($\mathbf{S}_k^{-1/2}\mathbf{r}_k$) pentru rampe insidioase de spoofing.
+> - **Pipeline Fotonic Dual-Band (`VIS 0.4–0.7 µm + SWIR 0.9–1.7 µm`) & Operator Neuromorfic de Ordin Redus (*FlyWire* 2024)**: fuziune spectrală adaptivă (`swir_vis_fusion.rs`), flux optic anizotrop WLS derotat giroscopic (`438.7 FPS` medie pe video real RGB/NIR cu zero `NaN`/`Inf`), solver stelar **Kabsch-Wahba SVD** cuplat cu `Stellarium` și inel atractor cu `16` glomeruli `E-PG` + `3 HS / 6 VS` integratori `LPTC`.
 
 ---
 
@@ -76,21 +87,15 @@ Atunci când o aeronavă se află pe panta finală de **`3.0°`** spre **Aeropor
 
 ## 🛡️ 3. Soluția AERO-SHIELD LRCV V2.0 (Arhitectura Bionică & Fotonică la Bord)
 
-Am construit un copilot autonom complet pasiv la bord și imun la interferențe radio externe, cu un cost hardware estimat la **`~5.600 EUR` per aeronavă (`0 EUR` infrastructură pe aeroport)**:
+Am proiectat și simulat un copilot autonom pasiv la bord, independent de semnalele radio externe, cu un buget hardware BOM propus pentru senzorii prototipului de **`~5.600 EUR` per aeronavă (`0 EUR` infrastructură pe aeroport)**:
 
-| Sub-Sistem la Bord | Tehnologie & Fizică | Rol Operațional în Ceață / Spoofing |
+| Sub-Sistem la Bord (Arhitectura Propuse / Modelată SIL) | Tehnologie & Fizică | Rol Operațional în Ceață / Spoofing |
 | :--- | :--- | :--- |
-| **1. Cameră Frontală Dual-Band (`VIS + SWIR 1.5 µm`)** | Senzor InGaAs în infraroșu scurt (`0.9–1.7 µm`), unde coeficientul de extincție Mie în ceață scade la `β_SWIR ≈ 0.22 × β_VIS` | Penetrează ceața de **`4×` mai departe** decât spectrul vizibil (`50 m → 200 m`), extrăgând centroizii sub-pixel (`I_SWIR²`) ai balizajului luminos ALS și contrastul marcajelor albe pe asfaltul ud |
-| **2. Radar Milimetric `FMCW 94 GHz` + Altimetru** | Lungime de undă `λ = 3.2 mm` transparentă la picăturile micronice de ceață | Măsoară altitudinea reală AGL cu precizie de **`3 cm`** pentru manevra de *flare*, viteza Doppler față de sol și profilul TERCOM al terenului sub plafonul de nori |
-| **3. Unitate Inerțială Tactică (`IMU 400 Hz`) + ES-EKF 22 Stări** | Integrare pe varietatea `SO(3) × ℝ³` cu *Error-State Extended Kalman Filter* în 22 de stări (15 inerțiale + 6 vânt/forfecare + 1 baro) | Asigură continuitatea buclei de control la `60 Hz`, estimează vectorul vântului tridimensional și derotează fluxul optic 3D (separând rotația aeronavei de translația reală) |
-| **4. Astro-Tracker Zenital `SWIR 2.2 µm` (Stellarium J2000) + `DRA`** | Cameră zenitală în banda K (`2.2 µm`, împrăștiere Rayleigh redusă de `256×`) + fotoreceptori de polarizare UV/albastru (*Dorsal Rim Area*) | Identifică autonom **9 stele în plină zi / prin pâclă** (`SNR +20.87 dB` vs `-8.68 dB` în vizibil), rezolvă atitudinea 3D prin **Wahba SVD** cu eroare **`0.00018°`** și elimină acumularea driftului giroscopic INS |
-| **5. Creier Bionic Google Research *Drosophila* (`139.255` Neuroni)** | Connectomul complet *FlyWire* (Nature, oct. 2024): `Retina -> Lamina -> Medulla (T4/T5) -> Lobula Plate (HS/VS) -> Central Complex (E-PG Ring Attractor 16 neuroni + PFNd)` | Arhitectură deterministă (fără halucinații de tip *black-box* CNN) care menține capul adevărat și estimează rafalele de vânt lateral cu **`0.85 s` înainte** ca acestea să lovească fuzelajul |
-
----
-
-> [!NOTE]
-> **Notă de Încadrare Tehnică (Research Prototype TRL-4 & DO-178C / CAT IIIc Design-Oriented Architecture):**
-> *Prototype written in Rust using deterministic and defensive coding practices intended to support a future DO-178C-oriented development process.* `AERO-SHIELD LRCV V2.0` este un prototip avansat de cercetare și simulare *Software/Simulator-in-the-Loop* (**TRL-4**, dezvoltat în cadrul **Craiova Hackathon 2026**). Referințele la **DO-178C DAL-A**, **ASTM F3269-21 (Simplex RTA)** și **CAT IIIc** desemnează arhitectura deterministă, practicile defensive de codare (`#![forbid(unsafe_code)]`, `0 .unwrap()` pe calea critică, *Phantom Types* pentru sisteme de coordonate, actualizare Kalman în forma stabilizată Joseph) și scenariile meteorologice de test, nu o certificare comercială EASA/FAA STC deja emisă.
+| **1. Cameră Frontală Dual-Band (`VIS 0.4–0.7 µm + SWIR 0.9–1.7 µm`)** | Senzor broadband InGaAs (clasa Sony SenSWIR IMX990/IMX991), unde coeficientul de extincție Mie în ceață la `1.55 µm` scade la `β_SWIR ≈ 0.22 × β_VIS` | Fuzionează banda vizibilă (pentru LED-uri fără emisie IR) cu banda SWIR (pentru lămpi halogen `6.6 A` / LED-uri cu opțiune IR `SAE ARP6182` și **contrastul de reflectanță spectrală SWIR** al marcajelor albe pe asfaltul ud) |
+| **2. Radar Milimetric `FMCW 94 GHz` + Altimetru** | Lungime de undă `λ = 3.2 mm` (regim Rayleigh transparent la picăturile micronice de ceață) | Măsoară altitudinea AGL pentru manevra de *flare* și continuitatea în *Flat Whiteout* (15–25 s), viteza Doppler 3D față de sol și profilul TERCOM al terenului |
+| **3. Unitate Inerțială Tactică (`IMU 400 Hz`) + ES-EKF 22 Stări** | Integrare pe varietatea `SO(3) × ℝ³` cu *Error-State Extended Kalman Filter* în 22 de stări în formă stabilizată Joseph | Asigură continuitatea buclei de control la `60 Hz`, estimează online biasurile `δb_a, δb_g`, vântul 3D, offsetul temporal `IDX_DT_SYNC` și derotează fluxul optic 3D |
+| **4. Astro-Tracker Zenital `SWIR 2.2 µm` (Stellarium J2000) + `DRA`** | Cameră zenitală în banda K (`2.2 µm`, împrăștiere Rayleigh redusă de `256×`) + fotoreceptori de polarizare UV/albastru (*Dorsal Rim Area*) | Identifică autonom **9 stele din efemeridele Stellarium** (`SNR +20.87 dB` în modelul SWIR vs `-8.68 dB` în vizibil), rezolvă atitudinea 3D prin **Wahba SVD** (`0.00018°`) și oprește deriva giroscopică INS |
+| **5. Operator Neuromorfic de Ordin Redus (*FlyWire* `139.255` Neuroni)** | Derivat prin homomorfism de câmp mediu din connectomul *FlyWire* (*Nature*, oct. 2024): `Retina/Lamina -> Medulla (T4/T5) -> Lobula Plate (3 HS + 6 VS LPTC) -> CX Ring Attractor (16 glomeruli E-PG + PFNd)` | Operator determinist SIMD (fără halucinații de tip *black-box* CNN) care integrează capul pe varietatea $S^1$ și estimează rafalele de vânt lateral cu **`0.85 s` înainte** |
 
 ---
 
@@ -208,15 +213,19 @@ Am construit un copilot autonom complet pasiv la bord și imun la interferențe 
 
 ---
 
-## 🏆 8. Rezultate Validate Automat (FlightGear Live + Stellarium SWIR + Server Rust)
+## 🏆 8. Rezultate Validate Automat & Clasificarea Dovezilor (`Evidence Classification`)
 
-| Test / Scenariu de Verificare | Condiții Meteo & Cyber | Abatere la Touchdown (`TD_Xtk`) | Cap la Touchdown (`TD_Hdg` vs `88.93°`) | Abatere la Oprire (`Stop_Xtk`) | Verdict Automat |
-| :--- | :--- | :---: | :---: | :---: | :---: |
-| **1. Zbor Live FlightGear — Interceptare Perpendiculară & Autoland CAT III (`V100`)** | `Vis: 240 m`, `089@2kt`, Spoofing GPS activ, Viraj 90° $C^1$ | **`+0.11 m`** (`11 cm`) | **`88.9°`** (`0.03°` eroare) | **`-0.18 m`** (`18 cm`) | ✅ **`PASS`** ([Video](https://youtu.be/G3kw4HmEDUI)) |
-| **2. Zbor Live FlightGear — Furtună Severă (`+TSRA FG`)** | `Vis: 220 m`, Vânt lateral `175° @ 14G18kt`, Ploaie `0.85`, Spoofing GPS | **`-0.25 m`** (`25 cm`) | **`88.8°`** la oprire | **`-1.84 m`** | ✅ **`PASS`** |
-| **3. Fuziune Stellarium SWIR (`2.2 µm`) + FlightGear (`223 ms`)** | `9 stele` blocate (`Ori,Tau,Aur,UMa,Cas`), `SWIR SNR +20.87 dB` vs `VIS -8.68 dB` | **`-0.072 m`** (`7.2 cm`) | **`88.94°`** (Wahba err `0.00018°`) | **`+0.914 m`** | ✅ **`PASS`** |
-| **4. Interceptare Maritimă Catania (`LICC — Pista 26`)** | Viraj de bază $C^1$ deasupra mării în ceață densă + Spoofing GPS | **`+0.19 m`** (`19 cm`) | **`263.5°`** (pe axul RWY 26) | **`+0.31 m`** | ✅ **`PASS`** |
-| **5. Suite Unit Tests Rust + Python (`cargo test` & `unittest`)** | `103` teste Rust (5 crate-uri workspace) + `12` teste 6-DoF Python | `0.0001 m` | `88.9314°` | `0` erori / `0` `.unwrap()` | ✅ **`115/115 PASS`** |
+| Test / Scenariu de Verificare | Clasificarea Dovezii (`Evidence Class`) | Condiții Meteo & Cyber | Rezultat Principal / Abatere la Touchdown (`TD_Xtk`) | Cap / Metrică Secundară | Abatere la Oprire / Stabilitate | Verdict Automat |
+| :--- | :---: | :--- | :---: | :---: | :---: | :---: |
+| **1. Zbor Live FlightGear — Interceptare Perpendiculară & Autoland (`V100`)** | `Emergent 6-DoF SIL` *(FlightGear + JSBSim)* | `Vis: 240 m`, `089@2kt`, Spoofing GPS activ, Viraj 90° $C^1$ | **`+0.11 m`** (`11 cm`) | **`88.9°`** (`0.03°` eroare) | **`-0.18 m`** (`18 cm`) | ✅ **`PASS`** ([Video](https://youtu.be/G3kw4HmEDUI)) |
+| **2. Zbor Live FlightGear — Furtună Severă (`+TSRA FG`)** | `Emergent 6-DoF SIL` *(FlightGear + JSBSim)* | `Vis: 220 m`, Vânt lateral `175° @ 14G18kt`, Ploaie `0.85`, Spoofing GPS | **`-0.25 m`** (`25 cm`) | **`88.8°`** la oprire | **`-1.84 m`** | ✅ **`PASS`** |
+| **3. Fuziune Stellarium SWIR (`2.2 µm`) + FlightGear (`223 ms`)** | `Emergent 6-DoF SIL` *(+ Stellarium J2000)* | `9 stele` blocate (`Ori,Tau,Aur,UMa,Cas`), `SWIR SNR +20.87 dB` vs `VIS -8.68 dB` | **`-0.072 m`** (`7.2 cm`) | **`88.94°`** (Wahba err `0.00018°`) | **`+0.914 m`** | ✅ **`PASS`** |
+| **4. Interceptare Maritimă Catania (`LICC — Pista 26`)** | `Emergent 6-DoF SIL` *(Sea-to-Land Approach)* | Viraj de bază $C^1$ deasupra mării (`<-420 m`) + coastă/ALS în ceață & Spoofing | **`+0.19 m`** (`19 cm`) | **`263.5°`** (pe axul RWY 26) | **`+0.31 m`** | ✅ **`PASS`** |
+| **5. Benchmark Video Real din Cockpit (`real_01`..`real_05`)** | `Real-Video Runtime Benchmark` *(RGB/NIR)* | `5` filmări reale de aviație în CAT III / vânt lateral (`benchmark_report.json`) | **`438.7 FPS`** medie (`522 FPS` CAT III) | **`15.837`** detecții ALS & WLS Flow | **`0` `NaN`/`Inf`** (`all_zero_nan: true`) | ✅ **`PASS`** |
+| **6. Scenariu Accelerat de Anduranță (`100.000 km` Zero-GPS)** | `Analytical Error-Budget Envelope` *(+ 90k-step SO(3)/AI Stress Test)* | `90.000` epoci macro cu integrare cuaternionică $\text{SO}(3)$ + inferență *FlyWire* | **`0.38 m`** medie analitică | **`0.79 m`** maxim pe faza fără relief | **`0` `NaN`/`Inf`** pe `90.000` pași | ✅ **`PASS`** |
+| **7. Suite Unit & Integration Tests (`cargo test` & `unittest`)** | `Automated Test Suite` *(Rust + Python)* | `103` teste Rust (5 crate-uri workspace) + `12` teste 6-DoF Python | `0.0001 m` | `88.9314°` | `0` erori / `0` `.unwrap()` | ✅ **`115/115 PASS`** |
+
+> **Foaie de Parcurs pentru Validare Viitoare (`TRL-5 / TRL-6 Roadmap`):** (1) Integrare *Hardware-in-the-Loop (HIL)* pe modulul **NVIDIA Jetson Orin NX** cu sincronizare hardware `GPIO Trigger / 1PPS` între IMU, senzorul global-shutter **Sony IMX991 SenSWIR** și radarul FMCW; (2) Calibrare radiometrică în cameră de ceață controlată (*fog chamber*); (3) Campanii de achiziție de date pe pistă și teste de zbor reale.
 
 ---
 
@@ -275,5 +284,5 @@ python3 flightgear/fg_mcp_ctl.py fly-spoof 120
 
 <div align="center">
   <sub><b>Copyright © 2026 Ionuț-Gabriel Buicu & Petre Leonard Macamete (AERO-SHIELD LRCV Team) — <a href="LICENSE">Toate Drepturile Rezervate (All Rights Reserved)</a></b></sub><br/>
-  <sub>Premiul pentru Originalitate la <b>Craiova Hackathon 2026</b> • Arhitectură <b>AERO-SHIELD LRCV V2.0</b> (100% Rust DO-178C DAL-A + FlightGear 2024.1 + Stellarium SWIR + Google Research Drosophila Connectome)</sub>
+  <sub>Premiul pentru Originalitate la <b>Craiova Hackathon 2026</b> • Prototip <b>AERO-SHIELD LRCV V2.0</b> (`TRL-4 SIL` • 100% Safe Rust `#![forbid(unsafe_code)]` • Simplex RTA • FlightGear 2024.1 & JSBSim • Stellarium SWIR • FlyWire Connectome)</sub>
 </div>
