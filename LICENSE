@@ -1,0 +1,93 @@
+AERO-SHIELD LRCV V2.0 — PROPRIETARY & SOURCE-AVAILABLE EVALUATION LICENSE
+ALL RIGHTS RESERVED / TOATE DREPTURILE REZERVATE
+
+Copyright (c) 2026 Ionuț-Gabriel Buicu & Petre Leonard Macamete
+(AERO-SHIELD LRCV Team — Craiova Hackathon 2026)
+All rights reserved. / Toate drepturile rezervate.
+
+================================================================================
+1. ROMÂNĂ — LICENȚĂ PROPRIETARĂ ȘI PROTECȚIA DREPTURILor DE AUTOR
+================================================================================
+
+Acest proiect software, inclusiv întregul cod sursă (Rust, Python, Nasal, HTML/JS),
+modelele matematice 6-DoF, arhitectura bionică și fotonică SWIR, algoritmii de
+detecție anti-spoofing GNSS/ILS, optimizatoarele genetice, documentația tehnică
+(PDF, PPTX, Markdown), materialele vizuale și înregistrările video aferente sistemului
+„AERO-SHIELD LRCV V2.0” (denumite împreună „Proiectul”), constituie proprietatea
+intelectuală exclusivă a autorilor:
+
+  • Ionuț-Gabriel Buicu
+  • Petre Leonard Macamete
+
+Proiectul este protejat de Legea nr. 8/1996 privind dreptul de autor și drepturile
+conexe din România, Directiva 2009/24/CE a Uniunii Europene privind protecția
+juridică a programelor pentru calculator și Convenția de la Berna pentru protecția
+operelor literare și artistice.
+
+1.1. Drepturi Acordate (Vizualizare și Evaluare):
+Se acordă, cu titlu gratuit și neexclusiv, dreptul de a vizualiza codul sursă pe
+platforma GitHub și de a descărca / rula Proiectul local EXCLUSIV în scop de:
+  (a) evaluare tehnică și jurizare în cadrul competițiilor / hackathon-urilor;
+  (b) verificare academică, educațională și demonstrativă necomercială.
+
+1.2. Restricții Stricte (Protecție Împotriva Furtului și Plagiatului):
+Fără acordul prealabil scris și expres al tuturor autorilor menționați mai sus,
+sunt STRICT INTERZISE următoarele acțiuni:
+  1. Copierea, clonarea în scop de însușire, redistribuirea, republicarea sau
+     încărcarea Proiectului (integral sau parțial) în alte depozite (repositories)
+     publice sau private sub alt nume sau fără acordul scris al autorilor;
+  2. Însușirea paternității operei (plagiatul), eliminarea, ascunderea sau
+     modificarea mențiunilor de copyright, a numelor autorilor sau a însemnelor
+     „AERO-SHIELD LRCV V2.0”;
+  3. Modificarea, adaptarea, traducerea sau crearea de opere derivate bazate pe
+     codul sursă, arhitectura sau documentația Proiectului în scopul distribuirii
+     sau prezentării ca operă proprie;
+  4. Utilizarea comercială, industrială, vânzarea, închirierea, sublicențierea
+     sau integrarea oricărei componente a Proiectului în produse sau servicii
+     comerciale ori instituționale ale unor terți.
+
+Orice încălcare a prezentelor condiții anulează automat permisiunea de evaluare
+și atrage răspunderea civilă și/sau penală conform legislației în vigoare privind
+protecția proprietății intelectuale.
+
+================================================================================
+2. ENGLISH — PROPRIETARY SOURCE-AVAILABLE LICENSE (ALL RIGHTS RESERVED)
+================================================================================
+
+This software project, including all source code (Rust, Python, Nasal, HTML/JS),
+6-DoF mathematical models, bionic and SWIR photonic architecture, GNSS/ILS
+anti-spoofing detection algorithms, genetic optimizers, technical documentation
+(PDF, PPTX, Markdown), visual assets, and video recordings associated with
+"AERO-SHIELD LRCV V2.0" (collectively, the "Project"), is the exclusive
+intellectual property of its authors:
+
+  • Ionuț-Gabriel Buicu
+  • Petre Leonard Macamete
+
+The Project is protected under Romanian Copyright Law no. 8/1996, European Union
+Directive 2009/24/EC on the legal protection of computer programs, and the Berne
+Convention for the Protection of Literary and Artistic Works.
+
+2.1. Permitted Use (Inspection & Non-Commercial Evaluation Only):
+Permission is hereby granted, free of charge and on a non-exclusive basis, solely
+to view the source code on GitHub and to download/execute the Project locally
+STRICTLY for:
+  (a) technical evaluation, peer review, and hackathon/competition judging;
+  (b) non-commercial academic or educational verification.
+
+2.2. Strict Prohibitions (Anti-Theft & Anti-Plagiarism Clause):
+Without the prior express written consent of all authors listed above, you may NOT:
+  1. Copy, redistribute, republish, mirror, or upload the Project (in whole or in
+     part) to any public or private repository, platform, or competition under
+     another name or without explicit written authorization;
+  2. Claim authorship (plagiarism), remove, obscure, or alter any copyright
+     notices, author attributions, or "AERO-SHIELD LRCV V2.0" identifiers;
+  3. Modify, adapt, fork for redistribution, or create derivative works based on
+     the Project's source code, mathematical formulations, or documentation;
+  4. Use the Project (in whole or in part) for any commercial, industrial,
+     monetized, or third-party product/service purpose, or sublicense/sell it.
+
+THE PROJECT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. ANY UNAUTHORIZED USE, REPRODUCTION, OR REDISTRIBUTION CONSTITUTES
+COPYRIGHT INFRINGEMENT AND WILL BE PURSUED TO THE FULLEST EXTENT OF APPLICABLE
+NATIONAL AND INTERNATIONAL LAW.

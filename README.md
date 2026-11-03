@@ -10,6 +10,7 @@
 [![Drosophila Connectome](https://img.shields.io/badge/Google_Research_FlyWire-139,255_Neurons_Ring_Attractor-00b0ff?style=for-the-badge)](#3-solutia-aero-shield-lrcv-v20-arhitectura-bionica--fotonica-la-bord)
 [![YouTube Demo](https://img.shields.io/badge/YouTube-Prezentare_Video_Live-ff1744?style=for-the-badge&logo=youtube)](https://youtu.be/HiSAS6L2h-Q)
 [![YouTube Zbor Perpendicular](https://img.shields.io/badge/YouTube-Zbor_Perpendicular_Autoland_V100-d50000?style=for-the-badge&logo=youtube)](https://youtu.be/G3kw4HmEDUI)
+[![License Proprietary](https://img.shields.io/badge/Licenta-Proprietary_(All_Rights_Reserved)-8e24aa?style=for-the-badge)](LICENSE)
 
 <br/>
 
@@ -20,7 +21,8 @@
   <b>✈️ Zbor Perpendicular V100 (YouTube 2K):</b> <a href="https://youtu.be/G3kw4HmEDUI">https://youtu.be/G3kw4HmEDUI</a> (<a href="https://github.com/petreleon/Craiova-Hackathon-2026/raw/main/real_videos/AERO_SHIELD_Perpendicular_Autoland_V100.mp4">Play Direct 1080p MP4</a> • <a href="https://github.com/petreleon/Craiova-Hackathon-2026/blob/main/real_videos/AERO_SHIELD_Perpendicular_Autoland_V100.mp4">Fișier Repo</a>)
   <br/>
   <b>📄 Ghid Tehnic Complet (22 pagini PDF):</b> <a href="AERO_SHIELD_Ghid_Complet_Explicat_De_La_Zero.pdf">AERO_SHIELD_Ghid_Complet_Explicat_De_La_Zero.pdf</a> •
-  <b>📊 Prezentare Widescreen (PPTX):</b> <a href="AERO_SHIELD_Craiova_Hackathon_2026.pptx">AERO_SHIELD_Craiova_Hackathon_2026.pptx</a>
+  <b>📊 Prezentare Widescreen (PPTX):</b> <a href="AERO_SHIELD_Craiova_Hackathon_2026.pptx">AERO_SHIELD_Craiova_Hackathon_2026.pptx</a> •
+  <b>🔒 Licență:</b> <a href="LICENSE">Proprietary / Toate Drepturile Rezervate</a>
 </p>
 
 </div>
@@ -240,6 +242,7 @@ Craiova-Hackathon-2026/
 │   └── Autonomous_FLIGH_AEROSHIELD.mp4                       # Înregistrarea zborului autonom FlightGear CAT IIIc
 ├── AERO_SHIELD_Craiova_Hackathon_2026.pptx             # Prezentarea oficială Widescreen (10 slide-uri)
 ├── AERO_SHIELD_Ghid_Complet_Explicat_De_La_Zero.pdf    # Documentația tehnică exhaustivă (22 pagini)
+├── LICENSE                      # Licență Proprietară / Toate Drepturile Rezervate (Protecția Proprietății Intelectuale)
 ├── launch_flightgear_craiova.sh # Script lansare automată FlightGear 2024.1 + Server Rust AERO-SHIELD pe Craiova (LRCV RWY 09)
 └── launch_flightgear_catania.sh # Script lansare automată FlightGear 2024.1 pe Catania Fontanarossa (LICC RWY 26)
 ```
@@ -265,5 +268,6 @@ python3 flightgear/fg_mcp_ctl.py fly-spoof 120
 ---
 
 <div align="center">
+  <sub><b>Copyright © 2026 Ionuț-Gabriel Buicu & Petre Leonard Macamete (AERO-SHIELD LRCV Team) — <a href="LICENSE">Toate Drepturile Rezervate (All Rights Reserved)</a></b></sub><br/>
   <sub>Premiul pentru Originalitate la <b>Craiova Hackathon 2026</b> • Arhitectură <b>AERO-SHIELD LRCV V2.0</b> (100% Rust DO-178C DAL-A + FlightGear 2024.1 + Stellarium SWIR + Google Research Drosophila Connectome)</sub>
 </div>

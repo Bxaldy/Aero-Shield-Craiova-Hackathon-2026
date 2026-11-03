@@ -11,8 +11,12 @@ members = [
 [workspace.package]
 version = "2.0.0"
 edition = "2021"
-authors = ["AERO-SHIELD LRCV Team — Craiova Hackathon V2.0"]
-license = "MIT"
+authors = [
+    "Ionuț-Gabriel Buicu <ionutgabriel.buicu@gmail.com>",
+    "Petre Leonard Macamete <petreleonardos@gmail.com>",
+    "AERO-SHIELD LRCV Team — Craiova Hackathon 2026",
+]
+license = "LicenseRef-AERO-SHIELD-Proprietary"
 
 [workspace.dependencies]
 nalgebra = { version = "0.33", features = ["serde-serialize"] }
