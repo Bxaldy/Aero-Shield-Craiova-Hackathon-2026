@@ -5,7 +5,7 @@
 #### *Integrare Rust + C++ JSBSim + FlightGear 2024.1 + Stellarium 24.3 • Aeroportul Internațional Craiova (`LRCV` — Pista 09: `44.3179° N, 23.8729° E`, Cap `88.9314°`) & Catania (`LICC` — Pista 26)*
 
 [![Premiu Originalitate](https://img.shields.io/badge/Craiova_Hackathon_2026-Premiul_pentru_Originalitate-ffd700?style=for-the-badge&logo=trophy)](#1-demonstratie-live-zbor-autonom-flightgear--prezentare-video-explicata)
-[![Rust Safe Avionics](https://img.shields.io/badge/Rust_2021-%23!%5Bforbid(unsafe__code)%5D_%E2%80%A2_Simplex_RTA-orange?style=for-the-badge&logo=rust)](#9-arhitectura-repository-ului-100-rust--flightgear-nasalmcp--stellarium-swir)
+[![Rust Safe Avionics](https://img.shields.io/badge/Rust_2021-100%25_Memory_Safe_(Zero_Unsafe)-orange?style=for-the-badge&logo=rust)](#9-arhitectura-repository-ului-100-rust--flightgear-nasalmcp--stellarium-swir)
 [![FlightGear 2024.1 SIL](https://img.shields.io/badge/FlightGear_2024.1_%26_JSBSim-60Hz_SIL_Autoland_PASS-00e676?style=for-the-badge&logo=flightgear)](#8-rezultate-validate-automat--clasificarea-dovezilor-evidence-classification)
 [![Drosophila Connectome](https://img.shields.io/badge/FlyWire_Connectome-Reduced--Order_CX_Ring_Attractor-00b0ff?style=for-the-badge)](#3-solutia-aero-shield-lrcv-v20-arhitectura-bionica--fotonica-la-bord)
 [![YouTube Demo](https://img.shields.io/badge/YouTube-Prezentare_Video_Live-ff1744?style=for-the-badge&logo=youtube)](https://youtu.be/HiSAS6L2h-Q)
@@ -284,5 +284,5 @@ python3 flightgear/fg_mcp_ctl.py fly-spoof 120
 
 <div align="center">
   <sub><b>Copyright © 2026 Ionuț-Gabriel Buicu & Petre Leonard Macamete (AERO-SHIELD LRCV Team) — <a href="LICENSE">Toate Drepturile Rezervate (All Rights Reserved)</a></b></sub><br/>
-  <sub>Premiul pentru Originalitate la <b>Craiova Hackathon 2026</b> • Prototip <b>AERO-SHIELD LRCV V2.0</b> (`TRL-4 SIL` • 100% Safe Rust `#![forbid(unsafe_code)]` • Simplex RTA • FlightGear 2024.1 & JSBSim • Stellarium SWIR • FlyWire Connectome)</sub>
+  <sub>Premiul pentru Originalitate la <b>Craiova Hackathon 2026</b> • Prototip <b>AERO-SHIELD LRCV V2.0</b> (TRL-4 SIL • 100% Memory-Safe Rust • FlightGear 2024.1 & JSBSim • Stellarium SWIR • FlyWire Connectome)</sub>
 </div>
