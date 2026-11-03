@@ -88,6 +88,12 @@ Am construit un copilot autonom complet pasiv la bord și imun la interferențe 
 
 ---
 
+> [!NOTE]
+> **Notă de Încadrare Tehnică (Research Prototype TRL-4 & DO-178C / CAT IIIc Design-Oriented Architecture):**
+> *Prototype written in Rust using deterministic and defensive coding practices intended to support a future DO-178C-oriented development process.* `AERO-SHIELD LRCV V2.0` este un prototip avansat de cercetare și simulare *Software/Simulator-in-the-Loop* (**TRL-4**, dezvoltat în cadrul **Craiova Hackathon 2026**). Referințele la **DO-178C DAL-A**, **ASTM F3269-21 (Simplex RTA)** și **CAT IIIc** desemnează arhitectura deterministă, practicile defensive de codare (`#![forbid(unsafe_code)]`, `0 .unwrap()` pe calea critică, *Phantom Types* pentru sisteme de coordonate, actualizare Kalman în forma stabilizată Joseph) și scenariile meteorologice de test, nu o certificare comercială EASA/FAA STC deja emisă.
+
+---
+
 ## 🔧 4. Integrarea pe Aeronavă & Clarificări Inginerești Esențiale
 
 În proiectarea sistemului am abordat direct constrângerile reale de certificare, montaj structural și fizica instrumentelor de bord:
